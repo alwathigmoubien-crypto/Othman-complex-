@@ -39,7 +39,6 @@
                 <button onclick="switchTab('ai-bot')" class="bg-indigo-700 hover:bg-indigo-600 text-white text-xs px-3 py-1.5 rounded-lg transition font-semibold whitespace-nowrap">🤖 المساعد الذكي</button>
                 <button onclick="switchTab('faq')" class="bg-emerald-900/80 hover:bg-emerald-700 text-white text-xs px-3 py-1.5 rounded-lg transition font-semibold whitespace-nowrap">❓ الأسئلة الشائعة</button>
                 <button onclick="switchTab('certificate')" class="bg-emerald-900/80 hover:bg-emerald-700 text-white text-xs px-3 py-1.5 rounded-lg transition font-semibold whitespace-nowrap">الشهادة</button>
-                <button onclick="switchTab('admin')" class="bg-slate-800 text-amber-300 text-xs px-3 py-1.5 rounded-lg border border-amber-400/30 whitespace-nowrap">🔒 لوحة الشيخ</button>
                 <button onclick="toggleDarkMode()" class="bg-slate-800 text-amber-300 text-xs px-2.5 py-1.5 rounded-lg border border-amber-400/30">🌓</button>
             </div>
         </div>
@@ -87,8 +86,7 @@
                 <div id="user-status-card" class="hidden p-3 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-300 text-xs rounded-lg text-center font-bold"></div>
             </div>
         </div>
-
-        <!-- تبويب راصد حلقات القرآن الكريم -->
+                <!-- تبويب راصد حلقات القرآن الكريم -->
         <div id="tab-quran-tracker" class="hidden space-y-6 tab-content">
             <div class="flex justify-between items-center">
                 <h3 class="text-xl font-bold text-amber-800">📖 راصد حلقات تحفيظ القرآن الكريم</h3>
@@ -123,6 +121,26 @@
                             <tr><td colspan="4" class="p-4 text-center text-slate-400">جاري التحميل...</td></tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- تبويب الاختبارات والتقييم الذاتي (ميزة جديدة احترافية) -->
+        <div id="tab-quiz" class="hidden space-y-6 tab-content">
+            <div class="flex justify-between items-center">
+                <h3 class="text-xl font-bold text-emerald-800">📝 اختبارات المتون الشرعية</h3>
+                <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold">الرئيسية ←</button>
+            </div>
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4 max-w-lg mx-auto">
+                <p class="text-xs text-slate-600 dark:text-slate-400">اختبر معلوماتك في العقيدة والفقه:</p>
+                <div class="space-y-3 text-xs">
+                    <p class="font-bold">س: ما هي الأصول الثلاثة التي يجب على الإنسان معرفتها؟</p>
+                    <div class="space-y-2">
+                        <label class="block p-2 rounded bg-slate-100 dark:bg-slate-800 cursor-pointer"><input type="radio" name="q1" value="wrong"> معرفة النبي والقرآن والصلاة</label>
+                        <label class="block p-2 rounded bg-slate-100 dark:bg-slate-800 cursor-pointer"><input type="radio" name="q1" value="right"> معرفة العبد ربه ودينه ونبيه</label>
+                    </div>
+                    <button onclick="checkQuizResult()" class="w-full islamic-gradient text-white font-bold py-2.5 rounded-lg shadow mt-2">تحقق من الإجابة 🎯</button>
+                    <p id="quiz-feedback" class="font-bold text-center mt-2"></p>
                 </div>
             </div>
         </div>
@@ -191,40 +209,42 @@
             </div>
         </div>
 
-        <!-- لوحة تحكم الشيخ -->
+        <!-- لوحة تحكم الشيخ المؤمّنة بكلمة مرور -->
         <div id="tab-admin" class="hidden space-y-6 tab-content">
             <div class="flex justify-between items-center">
-                <h3 class="text-xl font-bold text-amber-800">🔒 لوحة تحكم الشيخ</h3>
+                <h3 class="text-xl font-bold text-amber-800">🔒 لوحة تحكم الشيخ (مؤمّنة)</h3>
                 <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold">الرئيسية ←</button>
             </div>
             <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-6 max-w-2xl mx-auto">
-                <div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-xl border dark:border-slate-700">
-                    <canvas id="statsChart" class="max-h-48"></canvas>
+                <div class="grid grid-cols-2 gap-3 text-center">
+                    <div class="p-4 bg-emerald-50 dark:bg-slate-800 rounded-xl border dark:border-slate-700">
+                        <span class="text-xs text-slate-500 block">إجمالي السجلات</span>
+                        <h4 id="admin-total-count" class="text-lg font-bold text-emerald-700">0</h4>
+                    </div>
+                    <div class="p-4 bg-amber-50 dark:bg-slate-800 rounded-xl border dark:border-slate-700">
+                        <span class="text-xs text-slate-500 block">حالة الاتصال</span>
+                        <h4 class="text-lg font-bold text-amber-600">متصل 🟢</h4>
+                    </div>
                 </div>
                 <div class="space-y-4 border-t dark:border-slate-800 pt-4">
                     <h4 class="font-bold text-sm">📢 نشر تنبيه فوري أونلاين</h4>
                     <input type="text" id="admin-announcement-text" placeholder="نص الإعلان..." class="w-full text-xs p-2.5 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
                     <button onclick="publishAnnouncement()" class="w-full bg-amber-600 text-white text-xs font-bold py-2.5 rounded-lg shadow">نشر فوري للطلاب 🚀</button>
-
-                    <h4 class="font-bold text-sm pt-4">❓ إضافة سؤال شائع وإجابة الشيخ</h4>
-                    <input type="text" id="faq-q-input" placeholder="السؤال..." class="w-full text-xs p-2.5 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
-                    <input type="text" id="faq-a-input" placeholder="إجابة الشيخ..." class="w-full text-xs p-2.5 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
-                    <button onclick="addFAQ()" class="w-full islamic-gradient text-white text-xs font-bold py-2.5 rounded-lg shadow">إضافة لقائمة الأسئلة الشائعة 📚</button>
-
-                    <button onclick="exportDataExcel()" class="w-full bg-emerald-700 text-white text-xs font-bold py-2.5 rounded-lg shadow mt-4">📥 تصدير تقارير الحلقات (Excel)</button>
+                    <button onclick="exportDataExcel()" class="w-full bg-emerald-700 text-white text-xs font-bold py-2.5 rounded-lg shadow mt-2">📥 تصدير تقارير الحلقات (Excel)</button>
                 </div>
             </div>
         </div>
 
     </main>
 
-    <!-- الفوتر مع بصمة طلبك استور -->
-    <footer class="bg-slate-900 text-slate-400 text-center py-4 text-xs mt-auto border-t border-slate-800">
+    <!-- الفوتر مع زر الإدارة السري -->
+    <footer class="bg-slate-900 text-slate-400 text-center py-4 text-xs mt-auto border-t border-slate-800 relative">
         <p>جميع الحقوق محفوظة © مجمع عثمان بن عفان لتعليم القرآن وعلومه</p>
         <p class="text-amber-400 font-semibold mt-1">تم تطوير المنصة بواسطة: طلبك استور 🚀</p>
+        <button onclick="verifyAdminAccess()" class="absolute left-4 bottom-2 text-[10px] text-slate-600 hover:text-amber-400 transition">🔒 لوحة الشيخ</button>
     </footer>
 
-    <!-- فايربيس والمنطق البرمجي -->
+    <!-- فايربيس والمنطق البرمجي المتقدم -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -241,7 +261,6 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // التنقل السلس المتاح عالمياً
         window.switchTab = function(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             const target = document.getElementById('tab-' + tabId);
@@ -251,21 +270,80 @@
             }
         }
 
+        // حماية لوحة الشيخ بكلمة مرور سرية
+        window.verifyAdminAccess = function() {
+            const pass = prompt("أدخل كلمة مرور لوحة تحكم الشيخ:");
+            if(pass === "sheikh123") {
+                window.switchTab('admin');
+                loadAdminStats();
+            } else if(pass !== null) {
+                alert("كلمة المرور غير صحيحة!");
+            }
+        }
+
         window.toggleDarkMode = function() {
             document.documentElement.classList.toggle('dark');
         }
 
-        // مشاركة واتساب
         window.shareOnWhatsApp = function() {
-            const text = encodeURIComponent("مرحباً بك في منصة مجمع عثمان بن عفان لتعليم القرآن وعلومه وتأصيل المتون الشرعية: " + window.location.href);
+            const text = encodeURIComponent("مرحباً بك في منصة مجمع عثمان بن عفان لتعليم القرآن وعلومه: " + window.location.href);
             window.open("https://api.whatsapp.com/send?text=" + text, "_blank");
         }
 
-        // تسجيل الحساب البرمجي
         window.registerUserAccount = function() {
             const name = document.getElementById('user-fullname').value;
             const email = document.getElementById('user-email').value;
-            if(!name || !email) { alert("أدخل الاسم والبريد الإلكتروني."); return; }
+            if(!name || !email) { alert("أدخل الاسم والبريد."); return; }
             localStorage.setItem('student_name', name);
-            localStorage.setItem('student_email', email);
-            const statusCard = do
+            const statusCard = document.getElementById('user-status-card');
+            statusCard.classList.remove('hidden');
+            statusCard.innerText = `مرحباً بك يا ${name}، تم حفظ حسابك بنجاح!`;
+        }
+
+        window.generateCertificate = function() {
+            const name = document.getElementById('cert-student-name').value;
+            if(!name) { alert("أدخل اسم الطالب"); return; }
+            document.getElementById('cert-name-output').innerText = name;
+            document.getElementById('certificate-display').classList.remove('hidden');
+        }
+
+        window.checkQuizResult = function() {
+            const selected = document.querySelector('input[name="q1"]:checked');
+            const feedback = document.getElementById('quiz-feedback');
+            if(!selected) { alert("اختر إجابة أولاً"); return; }
+            if(selected.value === 'right') {
+                feedback.className = "font-bold text-center mt-2 text-emerald-600";
+                feedback.innerText = "إجابة صحيحة بارك الله فيك! 🌟";
+            } else {
+                feedback.className = "font-bold text-center mt-2 text-rose-600";
+                feedback.innerText = "إجابة خاطئة، راجع متن الأصول الثلاثة.";
+            }
+        }
+
+        window.saveQuranRecord = async function() {
+            const name = document.getElementById('q-student-name').value;
+            const surah = document.getElementById('q-surah').value;
+            const level = document.getElementById('q-level').value;
+            if(!name || !surah) { alert("املأ الحقول"); return; }
+            try {
+                await addDoc(collection(db, "quran_records"), { name, surah, level, date: new Date().toLocaleDateString('ar-SA') });
+                alert("تم حفظ السجل بنجاح!");
+                document.getElementById('q-student-name').value = '';
+                document.getElementById('q-surah').value = '';
+            } catch (e) {
+                alert("خطأ في الاتصال بقاعدة البيانات.");
+            }
+        }
+
+        async function loadAdminStats() {
+            try {
+                const querySnapshot = await getDocs(collection(db, "quran_records"));
+                document.getElementById('admin-total-count').innerText = querySnapshot.size;
+            } catch(e) {
+                console.error(e);
+            }
+        }
+    </script>
+</body>
+    </html>
+    
