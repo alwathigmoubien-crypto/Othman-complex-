@@ -16,7 +16,7 @@
 </head>
 <body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
 
-    <!-- شريط الإعلانات الفورية والديناميكية (أخبار الجائزة لمدة 24 ساعة) -->
+    <!-- شريط الإعلانات الفورية -->
     <div class="bg-amber-500 text-slate-950 text-xs py-2 px-4 font-bold text-center shadow-inner overflow-hidden whitespace-nowrap">
         <marquee behavior="scroll" direction="right" id="live-announcement-banner">📢 تهانينا للفائزين بالجوائز المالية في دورة العلوم الشرعية - تابع لوحة الشرف والفائزين عبر القائمة!</marquee>
     </div>
@@ -99,17 +99,8 @@
                 </div>
                 <p class="text-[11px] text-slate-500">كلما تم رصد حلقات الطلاب، زاد تقدم الختمة الجماعية للمجمع تلقائياً!</p>
             </div>
-
-            <!-- بطاقة طلب تصميم موقع لمسجد أو مجمع آخر -->
-            <div class="bg-gradient-to-r from-emerald-900 to-teal-900 text-white p-5 rounded-2xl shadow-md flex flex-col md:flex-row justify-between items-center gap-4">
-                <div>
-                    <h4 class="font-bold text-base text-amber-300">هل ترغب في تصميم منصة إلكترونية لمسجدك أو حلقتك؟</h4>
-                    <p class="text-xs text-slate-200 mt-1">نقدم خدمة تصميم وتطوير المواقع والمنصات الدينية مجاناً لوجه الله تعالى 🕌</p>
-                </div>
-                <a href="https://api.whatsapp.com/send?phone=+249961297795&text=السلام%20عليكم%20يا%20مهندس،%20أرغب%20في%20الاستفسار%20عن%20تصميم%20منصة%20إلكترونية%20لمسجدنا" target="_blank" class="gold-gradient text-white text-xs font-bold px-5 py-3 rounded-xl shadow-lg whitespace-nowrap hover:opacity-90 transition">تواصل معنا لتصميم منصة مسجدك 📱</a>
-            </div>
-        </div>
-                <!-- تبويب التسجيل الإلكتروني للدورات -->
+    </div>
+    <!-- تبويب التسجيل الإلكتروني -->
         <div id="tab-register-course" class="hidden space-y-6 tab-content">
             <div class="flex justify-between items-center">
                 <h3 class="text-xl font-bold text-amber-800">📝 التسجيل الإلكتروني للدورات الجديدة</h3>
@@ -131,7 +122,7 @@
             </div>
         </div>
 
-        <!-- تبويب تسجيل حضور الدروس اليومية -->
+        <!-- تبويب تسجيل الحضور -->
         <div id="tab-attendance" class="hidden space-y-6 tab-content">
             <div class="flex justify-between items-center">
                 <h3 class="text-xl font-bold text-emerald-800">✅ سجل حضور الدروس اليومية</h3>
@@ -146,7 +137,7 @@
             </div>
         </div>
 
-        <!-- تبويب لوحة الفائزين بالجوائز المالية -->
+        <!-- تبويب لوحة الفائزين -->
         <div id="tab-winners" class="hidden space-y-6 tab-content">
             <div class="flex justify-between items-center">
                 <h3 class="text-xl font-bold text-amber-800">🏆 لوحة الشرف والفائزين بالجوائز المالية</h3>
@@ -218,8 +209,8 @@
             <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4 text-xs leading-relaxed">
                 <p>غرس القيم الأخلاقية والآداب النبوية ومجالس الذكر والتربية العملية.</p>
             </div>
-        </div>
-         <!-- راصد الحلقات -->
+                    </div>
+                    <!-- راصد الحلقات -->
         <div id="tab-quran-tracker" class="hidden space-y-6 tab-content">
             <div class="flex justify-between items-center">
                 <h3 class="text-xl font-bold text-amber-800">📖 راصد حلقات تحفيظ القرآن الكريم</h3>
@@ -257,7 +248,7 @@
             </div>
         </div>
 
-        <!-- الاختبارات أونلاين والشهادة -->
+        <!-- الاختبارات أونلاين -->
         <div id="tab-quiz" class="hidden space-y-6 tab-content">
             <div class="flex justify-between items-center">
                 <h3 class="text-xl font-bold text-emerald-800">📝 اختبارات الدورات أونلاين</h3>
@@ -309,7 +300,7 @@
             </div>
         </div>
 
-        <!-- الأرشيف الصوتي والتفريغات -->
+        <!-- الأرشيف الصوتي -->
         <div id="tab-audio" class="hidden space-y-6 tab-content">
             <div class="flex justify-between items-center">
                 <h3 class="text-xl font-bold">🎧 الأرشيف الصوتي والتفريغات النصية</h3>
@@ -344,7 +335,7 @@
             </div>
         </div>
 
-        <!-- لوحة تحكم الشيخ المؤمّنة -->
+        <!-- لوحة تحكم الشيخ -->
         <div id="tab-admin" class="hidden space-y-6 tab-content">
             <div class="flex justify-between items-center">
                 <h3 class="text-xl font-bold text-amber-800">🔒 لوحة تحكم الشيخ (مؤمّنة)</h3>
@@ -371,7 +362,7 @@
 
     </main>
 
-    <!-- زر واتساب العائم للتواصل -->
+    <!-- زر واتساب العائم -->
     <a href="https://api.whatsapp.com/send?phone=+249961297795&text=السلام%20عليكم%20يا%20مهندس،%20أرغب%20في%20الاستفسار%20عن%20تصميم%20منصة%20دينية..." target="_blank" class="fixed bottom-5 left-5 bg-emerald-600 hover:bg-emerald-500 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-2xl z-50 transition transform hover:scale-110 text-xl" title="تواصل لتصميم منصة مسجدك">💬</a>
 
     <!-- الفوتر -->
@@ -381,7 +372,7 @@
         <p class="text-slate-500">تم تطوير المنصة بواسطة: طلبك استور 🚀</p>
     </footer>
 
-    <!-- البرمجة الديناميكية -->
+    <!-- البرمجة الديناميكية وتشغيل الأقسام والقائمة -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, addDoc, getDocs, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -398,6 +389,7 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
+        // دالة التنقل بين الأقسام بضغطة زر
         window.switchTab = function(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             const target = document.getElementById('tab-' + tabId);
@@ -407,6 +399,7 @@
             }
         }
 
+        // دالة فتح وإغلاق القائمة الجانبية (Sidebar Drawer)
         window.toggleSidebar = function() {
             const drawer = document.getElementById('side-drawer');
             if(drawer) {
@@ -538,37 +531,4 @@
 
                 const tbody = document.getElementById('quran-table-body');
                 if(tbody && total > 0) {
-                    tbody.innerHTML = '';
-                    querySnapshot.forEach((doc) => {
-                                      const tbody = document.getElementById('quran-table-body');
-                if(tbody && total > 0) {
-                    tbody.innerHTML = '';
-                    querySnapshot.forEach((doc) => {
-                        const data = doc.data();
-                        tbody.innerHTML += `
-                            <tr class="border-b dark:border-slate-800">
-                                <td class="p-3 font-bold">${data.name}</td>
-                                <td class="p-3">${data.surah}</td>
-                                <td class="p-3 text-emerald-600">${data.level}</td>
-                                <td class="p-3 text-slate-400">${data.date}</td>
-                            </tr>
-                        `;
-                    });
-                }
-            } catch(e) {
-                console.error("خطأ في جلب البيانات:", e);
-            }
-        }
-
-        async function loadAdminStats() {
-            try {
-                const querySnapshot = await getDocs(collection(db, "quran_records"));
-                const countEl = document.getElementById('admin-total-count');
-                if(countEl) countEl.innerText = querySnapshot.size;
-            } catch(e) {
-                console.error(e);
-            }
-        }
-    </script>
-</body>
-</html>
+                    tbody.innerHT
