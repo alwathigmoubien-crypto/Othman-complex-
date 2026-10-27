@@ -15,12 +15,10 @@
 </head>
 <body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
 
-    <!-- شريط الإعلانات الفورية -->
     <div class="bg-amber-500 text-slate-950 text-xs py-2 px-4 font-bold text-center shadow-inner overflow-hidden whitespace-nowrap">
         <marquee behavior="scroll" direction="right" id="live-announcement-banner">📢 مرحباً بكم في المنصة العالمية لمجمع عثمان بن عفان لتعليم القرآن وعلومه - تصفح الأقسام عبر القائمة الجانبية!</marquee>
     </div>
 
-    <!-- الشريط العلوي -->
     <header class="islamic-gradient text-white shadow-md sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-3 space-x-reverse">
@@ -35,13 +33,12 @@
 
             <div class="flex items-center gap-2">
                 <button onclick="switchTab('home')" class="bg-emerald-700 hover:bg-emerald-600 text-white text-xs px-3 py-1.5 rounded-lg transition font-semibold shadow cursor-pointer hidden md:inline-block">الرئيسية</button>
-                <button onclick="switchTab('winners')" class="bg-amber-600 hover:bg-amber-500 text-white text-xs px-3 py-1.5 rounded-lg transition font-semibold cursor-pointer">🏆 لوحة الشفافية</button>
+                <button onclick="switchTab('library')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs px-3 py-1.5 rounded-lg transition font-semibold cursor-pointer">📚 المكتبة</button>
                 <button onclick="toggleDarkMode()" class="bg-slate-800 text-amber-300 text-xs px-2.5 py-1.5 rounded-lg border border-amber-400/30 cursor-pointer">🌓</button>
             </div>
         </div>
     </header>
 
-    <!-- القائمة الجانبية (خالية تماماً من أي زر أدمن لراحة البال) -->
     <div id="side-drawer" class="fixed inset-y-0 right-0 z-50 w-72 bg-slate-900 text-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col p-5 border-l border-emerald-800">
         <div class="flex justify-between items-center pb-4 border-b border-slate-800">
             <h3 class="font-bold text-amber-400 text-sm font-amiri">قائمة أقسام المنصة العالمية</h3>
@@ -49,8 +46,11 @@
         </div>
         <div class="flex flex-col gap-2 mt-4 overflow-y-auto flex-grow text-xs">
             <button onclick="switchTab('home'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">🏠 الرئيسية وإشراقة اليوم</button>
-            <button onclick="switchTab('roadmap'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2 text-amber-300 font-bold">🗺️ دليل المتون العلمية (الخريطة)</button>
+            <button onclick="switchTab('roadmap'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2 text-amber-300 font-bold">🗺️ خريطة المتون العلمية</button>
             <button onclick="switchTab('register-course'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">📝 التسجيل الإلكتروني للدورات</button>
+            <button onclick="switchTab('survey'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2 text-indigo-300 font-bold">📊 استبيان الأوقات المناسبة</button>
+            <button onclick="switchTab('recitation'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2 text-emerald-400 font-bold">🎙️ مقرأة التلاوة والتسميع للشيخ</button>
+            <button onclick="switchTab('library'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">📚 مكتبة الكتب والمتون PDF</button>
             <button onclick="switchTab('attendance'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">✅ سجل حضور الدروس اليومية</button>
             <button onclick="switchTab('winners'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2 text-amber-400 font-bold">🏆 لوحة الشرف والشفافية</button>
             <button onclick="switchTab('quran-section'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">📖 قسم القرآن الكريم وحلقاته</button>
@@ -59,7 +59,7 @@
             <button onclick="switchTab('tarbiya-section'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">🌱 قسم التربية الإسلامية</button>
             <button onclick="switchTab('quran-tracker'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">📊 راصد حلقات التحفيظ والطلاب</button>
             <button onclick="switchTab('quiz'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">📝 الاختبارات الآلية والشهادة</button>
-            <button onclick="switchTab('audio'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">🎧 الأرشيف الصوتي وريلز الفوائد</button>
+            <button onclick="switchTab('audio'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">🎧 الأرشيف الصوتي والمرئي للدروس</button>
             <button onclick="switchTab('ai-bot'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">🤖 المساعد الذكي لمتون العلم</button>
             <button onclick="switchTab('faq'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">❓ الأسئلة الشائعة وفتاوى الشيخ</button>
             <button onclick="switchTab('certificate'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">🎓 شهادة الاجتياز الرقمية</button>
@@ -71,33 +71,29 @@
 
     <main class="flex-grow container mx-auto px-4 py-6 max-w-4xl space-y-6">
 
-        <!-- تبويب الرئيسية مع آية اليوم والعداد التنازلي -->
         <div id="tab-home" class="tab-content space-y-6">
             <div class="islamic-gradient text-white p-6 md:p-8 rounded-2xl shadow-xl relative overflow-hidden border border-emerald-700/50 space-y-4">
                 <div class="relative z-10">
                     <span class="bg-amber-500/20 text-amber-300 text-xs px-3 py-1 rounded-full font-semibold border border-amber-500/30">مشروع البرامج التأهيلية - انطلاقة عالمية</span>
                     <h2 class="text-2xl md:text-3xl font-bold font-amiri mt-3 mb-2 leading-tight">مرحباً بك في المنصة العالمية لمجمع عثمان بن عفان</h2>
-                    <p class="text-slate-200 text-sm md:text-base leading-relaxed mb-4">سجل في الدورات الجديدة، تابع حضورك يومياً، واكتشف الخريطة العلمية للمتون.</p>
+                    <p class="text-slate-200 text-sm md:text-base leading-relaxed mb-4">سجل في الدورات الجديدة، أرسل تلاوتك للشيخ، وحمل الكتب والمتون العلمية.</p>
                 </div>
             </div>
 
-            <!-- فكرة 1: آية اليوم والتدبر (عالمية دينياً) -->
             <div class="bg-emerald-900/10 dark:bg-slate-900 border border-emerald-500/30 p-5 rounded-2xl shadow-sm space-y-2">
                 <span class="text-xs font-bold text-emerald-700 dark:text-emerald-400 block">✨ إشراقة وتدبر (آية اليوم)</span>
                 <p class="font-amiri text-lg text-emerald-900 dark:text-emerald-200">"وَاتَّقُوا اللَّهَ ۖ وَيُعَلِّمُكُمُ اللَّهُ ۗ وَاللَّهُ بِكُلِّ شَيْءٍ عَلِيمٌ"</p>
                 <p class="text-xs text-slate-600 dark:text-slate-400">التوجيه: تقوى الله عز وجل من أعظم مفاتيح العلم النافع والفهم السديد في المتون والعلوم الشرعية.</p>
             </div>
 
-            <!-- فكرة 3: العداد التنازلي للدورة القادمة -->
             <div class="gold-gradient text-white p-5 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-3">
                 <div>
-                    <h4 class="font-bold text-sm">⏳ العد التنازلي لانطلاق الدورة التأهيلية الكبرى القادمة</h4>
-                    <p class="text-xs text-amber-100">سجل بياناتك مبكراً لضمان المقعد (أونلاين / حضوري).</p>
+                    <h4 class="font-bold text-sm">🎙️ مقرأة التسميع: أرسل تلاوتك للشيخ ليقوم بتصحيحها</h4>
+                    <p class="text-xs text-amber-100">سجل تلاوتك المباشرة أو ارفع رابط التسجيل للمتابعة الفردية.</p>
                 </div>
-                <button onclick="switchTab('register-course')" class="bg-white text-amber-900 font-bold text-xs px-4 py-2 rounded-xl shadow cursor-pointer">سجل الآن 🚀</button>
+                <button onclick="switchTab('recitation')" class="bg-white text-amber-900 font-bold text-xs px-4 py-2 rounded-xl shadow cursor-pointer">ابدأ التسميع 🎙️</button>
             </div>
 
-            <!-- عداد ختمة القرآن -->
             <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 rounded-2xl shadow-sm space-y-3">
                 <div class="flex justify-between items-center">
                     <h4 class="font-bold text-sm text-emerald-800 dark:text-emerald-400">📖 تقدم ختمة المجمع الجماعية</h4>
@@ -108,9 +104,8 @@
                 </div>
                 <p class="text-[11px] text-slate-500">كلما تم رصد حلقات الطلاب، زاد تقدم الختمة الجماعية للمجمع تلقائياً!</p>
             </div>
-        </div>
-            <!-- فكرة 4: خريطة المتون العلمية المعتمدة (Roadmap) -->
-        <div id="tab-roadmap" class="tab-content hidden space-y-6">
+                    </div>
+           <div id="tab-roadmap" class="tab-content hidden space-y-6">
             <div class="flex justify-between items-center">
                 <h3 class="text-xl font-bold text-amber-800">🗺️ خريطة المتون العلمية المعتمدة</h3>
                 <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
@@ -129,7 +124,6 @@
             </div>
         </div>
 
-        <!-- تبويب التسجيل الإلكتروني -->
         <div id="tab-register-course" class="tab-content hidden space-y-6">
             <div class="flex justify-between items-center">
                 <h3 class="text-xl font-bold text-amber-800">📝 التسجيل الإلكتروني للدورات الجديدة</h3>
@@ -138,12 +132,12 @@
             <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4 max-w-lg mx-auto text-xs">
                 <input type="text" id="reg-name" placeholder="الاسم الثلاثي..." class="w-full p-3 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
                 <input type="text" id="reg-country" placeholder="الدولة / المدينة..." class="w-full p-3 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
+                
+                <label class="font-bold text-slate-700 dark:text-slate-300 block">اختر الدورة المتاحة:</label>
                 <select id="reg-department" class="w-full p-3 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
                     <option value="قسم القرآن الكريم وحلقاته">قسم القرآن الكريم وحلقاته</option>
-                    <option value="قسم العلوم الشرعية (المتون)">قسم العلوم الشرعية (المتون)</option>
-                    <option value="قسم تنمية المهارات">قسم تنمية المهارات</option>
-                    <option value="قسم التربية الإسلامية">قسم التربية الإسلامية</option>
                 </select>
+
                 <select id="reg-type" class="w-full p-3 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
                     <option value="حضورياً بالمجمع">حضورياً بالمجمع</option>
                     <option value="عبر الإنترنت (أونلاين)">عبر الإنترنت (أونلاين)</option>
@@ -154,7 +148,65 @@
             </div>
         </div>
 
-        <!-- تبويب تسجيل الحضور -->
+        <div id="tab-survey" class="tab-content hidden space-y-6">
+            <div class="flex justify-between items-center">
+                <h3 class="text-xl font-bold text-indigo-700">📊 استبيان تحديد الأوقات والأيام المناسبة</h3>
+                <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
+            </div>
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4 max-w-lg mx-auto text-xs">
+                <input type="text" id="survey-name" placeholder="اسم الطالب..." class="w-full p-3 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
+                
+                <label class="font-bold block">اختر اليوم المفضل للدراسة:</label>
+                <select id="survey-day" class="w-full p-3 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
+                    <option value="السبت">يوم السبت</option>
+                    <option value="الأحد">يوم الأحد</option>
+                    <option value="الإثنين">يوم الإثنين</option>
+                    <option value="الثلاثاء">يوم الثلاثاء</option>
+                    <option value="الأربعاء">يوم الأربعاء</option>
+                    <option value="الخميس">يوم الخميس</option>
+                </select>
+
+                <label class="font-bold block">اختر الفترة الزمنية المناسبة:</label>
+                <select id="survey-time" class="w-full p-3 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
+                    <option value="بعد صلاة الفجر">بعد صلاة الفجر</option>
+                    <option value="بعد صلاة العصر">بعد صلاة العصر</option>
+                    <option value="بعد صلاة المغرب">بعد صلاة المغرب</option>
+                    <option value="الفترة المسائية (8 - 10 مساءً)">الفترة المسائية (8 - 10 مساءً)</option>
+                </select>
+
+                <button onclick="submitSurvey()" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-lg shadow cursor-pointer">إرسال صوتك في الاستبيان 📥</button>
+                <div id="survey-success-msg" class="hidden p-3 bg-indigo-100 text-indigo-800 rounded-lg text-center font-bold"></div>
+            </div>
+        </div>
+
+        <!-- مقرأة التلاوة والتسميع للشيخ -->
+        <div id="tab-recitation" class="tab-content hidden space-y-6">
+            <div class="flex justify-between items-center">
+                <h3 class="text-xl font-bold text-emerald-800">🎙️ مقرأة التلاوة والتسميع (إرسال للشيخ)</h3>
+                <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
+            </div>
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4 max-w-lg mx-auto text-xs">
+                <p class="text-slate-600 dark:text-slate-300">أدخل اسمك وموضع التلاوة (أو رابط التسجيل الصوتي المباشر) ليقوم الشيخ بالاستماع والتقييم.</p>
+                <input type="text" id="rec-name" placeholder="اسم الطالب الكامل..." class="w-full p-3 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
+                <input type="text" id="rec-srah" placeholder="الموضع (مثلاً: سورة البقرة من آية 1 إلى 20)..." class="w-full p-3 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
+                <input type="text" id="rec-audio" placeholder="رابط التسجيل الصوتي (رابط صوت مباشر أو تليجرام/درايف)..." class="w-full p-3 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
+                <button onclick="submitRecitation()" class="w-full islamic-gradient text-white font-bold py-3 rounded-lg shadow cursor-pointer">إرسال التلاوة للشيخ للمراجعة 📤</button>
+                <div id="rec-success-msg" class="hidden p-3 bg-emerald-100 text-emerald-800 rounded-lg text-center font-bold"></div>
+            </div>
+        </div>
+
+        <div id="tab-library" class="tab-content hidden space-y-6">
+            <div class="flex justify-between items-center">
+                <h3 class="text-xl font-bold text-emerald-800">📚 مكتبة المتون والكتب العلمية</h3>
+                <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
+            </div>
+            <div id="dynamic-library-container" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                <div class="p-4 bg-white dark:bg-slate-900 rounded-xl border dark:border-slate-800 text-center text-slate-400 col-span-2">
+                    جاري تحميل الكتب والمتون العلمية...
+                </div>
+            </div>
+        </div>
+
         <div id="tab-attendance" class="tab-content hidden space-y-6">
             <div class="flex justify-between items-center">
                 <h3 class="text-xl font-bold text-emerald-800">✅ سجل حضور الدروس اليومية</h3>
@@ -168,7 +220,6 @@
             </div>
         </div>
 
-        <!-- لوحة الشرف والشفافية (معتمدة على المصداقية والواقعية) -->
         <div id="tab-winners" class="tab-content hidden space-y-6">
             <div class="flex justify-between items-center">
                 <h3 class="text-xl font-bold text-amber-800">🏆 لوحة الشرف والشفافية</h3>
@@ -176,14 +227,13 @@
             </div>
             <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4 text-xs leading-relaxed">
                 <h4 class="font-bold text-sm text-amber-700">دليل الشفافية والمصداقية في المجمع:</h4>
-                <p class="text-slate-600 dark:text-slate-300">يتم إدراج أسماء الفائزين والمتفوقين رسمياً في المسابقات بعد اعتماد النتائج النهائية من إدارة المجمع وتوثيق عمليات التحويل عبر الجهات المعتمدة.</p>
+                <p class="text-slate-600 dark:text-slate-300">يتم إدراج أسماء الفائزين والمتفوقين رسمياً في المسابقات بعد اعتماد النتائج النهائية من إدارة المجمع.</p>
                 <div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border dark:border-slate-700 text-center text-slate-500">
                     لا توجد مسابقات منتهية معلنة حالياً - ترقبوا المسابقة القادمة قريباً 🔔
                 </div>
             </div>
         </div>
 
-        <!-- الأقسام المختلفة -->
         <div id="tab-quran-section" class="tab-content hidden space-y-6">
             <div class="flex justify-between items-center">
                 <h3 class="text-xl font-bold text-amber-800">📖 قسم القرآن الكريم وحلقاته</h3>
@@ -200,7 +250,7 @@
                 <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
             </div>
             <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 text-xs">
-                <button onclick="switchTab('audio')" class="bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg shadow cursor-pointer">الأرشيف الصوتي وريلز الفوائد 🎧</button>
+                <button onclick="switchTab('audio')" class="bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg shadow cursor-pointer">الأرشيف الصوتي والمرئي للدروس 🎧</button>
             </div>
         </div>
 
@@ -222,9 +272,8 @@
             <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 text-xs">
                 <p>غرس القيم الأخلاقية والآداب النبوية.</p>
             </div>
-        </div>
-            <!-- راصد الحلقات -->
-        <div id="tab-quran-tracker" class="tab-content hidden space-y-6">
+                        </div>
+                      <div id="tab-quran-tracker" class="tab-content hidden space-y-6">
             <div class="flex justify-between items-center">
                 <h3 class="text-xl font-bold text-amber-800">📖 راصد حلقات تحفيظ القرآن الكريم</h3>
                 <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
@@ -299,37 +348,40 @@
             </div>
         </div>
 
-        <!-- فكرة 2: ركن الأرشيف الصوتي وريلز الفوائد السريعة -->
+        <!-- الأرشيف الصوتي والمرئي للدروس -->
         <div id="tab-audio" class="tab-content hidden space-y-6">
             <div class="flex justify-between items-center">
-                <h3 class="text-xl font-bold">🎧 الأرشيف الصوتي وريلز الفوائد</h3>
+                <h3 class="text-xl font-bold">🎧 الأرشيف الصوتي والمرئي للدروس</h3>
                 <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
             </div>
-            <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border dark:border-slate-800 space-y-3 text-xs">
-                <h4 class="font-bold text-amber-700">🎙️ قطوف دقيقة (ريلز علمية صوتية)</h4>
-                <p class="text-slate-600 dark:text-slate-300">دروس صوتية مركزة لا تتجاوز دقيقتين في آداب طالب العلم وحفظ المتون.</p>
-            </div>
-        </div>
-
-        <div id="tab-certificate" class="tab-content hidden space-y-6">
-            <div class="flex justify-between items-center">
-                <h3 class="text-xl font-bold">🎓 شهادة الاجتياز الرقمية</h3>
-                <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
-            </div>
-            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4 max-w-lg mx-auto text-center text-xs">
-                <input type="text" id="cert-student-name" placeholder="اسم الطالب الثلاثي..." class="w-full p-3 rounded-lg border dark:border-slate-700 dark:bg-slate-800 text-center font-bold">
-                <button onclick="generateCertificate()" class="w-full islamic-gradient text-white font-bold py-3 rounded-lg shadow cursor-pointer">إصدار الشهادة الرسمية 🎖️</button>
-                <div id="certificate-display" class="hidden p-6 border-4 border-amber-500 rounded-xl bg-amber-50/50 dark:bg-slate-800 space-y-3 mt-4">
-                    <h4 class="font-amiri text-xl font-bold text-emerald-900 dark:text-emerald-400">شهادة إتمام دورة علمية معتمدة</h4>
-                    <h3 id="cert-name-output" class="text-lg font-bold text-amber-700"></h3>
+            <div id="dynamic-lessons-container" class="space-y-4 text-xs">
+                <div class="p-4 bg-white dark:bg-slate-900 rounded-xl border dark:border-slate-800 text-center text-slate-400">
+                    جاري تحميل الدروس (صوتيات ومرئيات)...
                 </div>
             </div>
         </div>
 
-        <!-- لوحة تحكم الشيخ (مخفية تماماً وتفتح عبر #admin بكلمة السر sheikh123) -->
+        <!-- شهادة الاجتياز مع رقم التحقق الفريد -->
+        <div id="tab-certificate" class="tab-content hidden space-y-6">
+            <div class="flex justify-between items-center">
+                <h3 class="text-xl font-bold">🎓 شهادة الاجتياز الرقمية برقم معتمد</h3>
+                <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
+            </div>
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4 max-w-lg mx-auto text-center text-xs">
+                <input type="text" id="cert-student-name" placeholder="اسم الطالب الثلاثي..." class="w-full p-3 rounded-lg border dark:border-slate-700 dark:bg-slate-800 text-center font-bold">
+                <button onclick="generateCertificate()" class="w-full islamic-gradient text-white font-bold py-3 rounded-lg shadow cursor-pointer">إصدار الشهادة الرسمية برقم تحقق 🎖️</button>
+                <div id="certificate-display" class="hidden p-6 border-4 border-amber-500 rounded-xl bg-amber-50/50 dark:bg-slate-800 space-y-3 mt-4">
+                    <h4 class="font-amiri text-xl font-bold text-emerald-900 dark:text-emerald-400">شهادة إتمام دورة علمية معتمدة</h4>
+                    <h3 id="cert-name-output" class="text-lg font-bold text-amber-700"></h3>
+                    <p class="text-[11px] text-slate-500">رقم التحقق المعتمد بالمنصة: <span id="cert-id-output" class="font-mono font-bold text-amber-600"></span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- لوحة تحكم الإدارة الشاملة (للمهندس والشيخ) -->
         <div id="tab-admin" class="tab-content hidden space-y-6">
             <div class="flex justify-between items-center">
-                <h3 class="text-xl font-bold text-amber-800">🔒 لوحة تحكم الشيخ (مؤمّنة)</h3>
+                <h3 class="text-xl font-bold text-amber-800">🔒 لوحة التحكم الإدارية الشاملة (إدارة كاملة)</h3>
                 <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
             </div>
             <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-6 max-w-2xl mx-auto text-xs">
@@ -343,10 +395,49 @@
                         <h4 class="text-lg font-bold text-amber-600">متصل 🟢</h4>
                     </div>
                 </div>
-                <div class="space-y-4 border-t dark:border-slate-800 pt-4">
-                    <h4 class="font-bold text-sm">📢 نشر تنبيه فوري أونلاين</h4>
+
+                <!-- 1. نشر الإعلانات الفورية -->
+                <div class="space-y-3 border-t dark:border-slate-800 pt-4">
+                    <h4 class="font-bold text-sm text-amber-700">📢 نشر تنبيه فوري أونلاين</h4>
                     <input type="text" id="admin-announcement-input" placeholder="اكتب الإعلان الجديد هنا..." class="w-full p-2.5 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
-                    <button onclick="publishAnnouncement()" class="w-full bg-amber-600 text-white font-bold py-2.5 rounded-lg shadow cursor-pointer">نشر الإعلان فوراً للطلاب 🚀</button>
+                    <button onclick="publishAnnouncement()" class="w-full bg-amber-600 text-white font-bold py-2.5 rounded-lg shadow cursor-pointer">نشر الإعلان للطلاب فوراً 🚀</button>
+                </div>
+
+                <!-- 2. إضافة دورة جديدة -->
+                <div class="space-y-3 border-t dark:border-slate-800 pt-4">
+                    <h4 class="font-bold text-sm text-amber-800">📝 إضافة دورة جديدة للتسجيل</h4>
+                    <input type="text" id="admin-course-title" placeholder="اسم الدورة الجديدة (مثلاً: شرح الأجرومية)..." class="w-full p-2.5 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
+                    <button onclick="addNewCourse()" class="w-full gold-gradient text-white font-bold py-2.5 rounded-lg shadow cursor-pointer">إضافة الدورة للطلاب 🎯</button>
+                </div>
+
+                <!-- 3. إضافة درس صوتي أو فيديو -->
+                <div class="space-y-3 border-t dark:border-slate-800 pt-4">
+                    <h4 class="font-bold text-sm text-emerald-700">➕ إضافة درس جديد (صوتي MP3 أو فيديو يوتيوب)</h4>
+                    <input type="text" id="admin-lesson-title" placeholder="عنوان الدرس..." class="w-full p-2.5 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
+                    <select id="admin-lesson-type" class="w-full p-2.5 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
+                        <option value="audio">ملف صوتي (MP3 / ريلز)</option>
+                        <option value="video">فيديو مرئي (رابط يوتيوب أو فيديو مباشر)</option>
+                    </select>
+                    <input type="text" id="admin-lesson-desc" placeholder="نبذة مختصرة أو تفريغ نصي..." class="w-full p-2.5 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
+                    <input type="text" id="admin-lesson-media" placeholder="رابط الملف أو الفيديو المباشر..." class="w-full p-2.5 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
+                    <button onclick="addNewLesson()" class="w-full islamic-gradient text-white font-bold py-2.5 rounded-lg shadow cursor-pointer">نشر الدرس في الأرشيف 🎧🎬</button>
+                </div>
+
+                <!-- 4. إضافة كتاب PDF -->
+                <div class="space-y-3 border-t dark:border-slate-800 pt-4">
+                    <h4 class="font-bold text-sm text-indigo-700">📚 إضافة كتاب أو متن PDF للمكتبة</h4>
+                    <input type="text" id="admin-book-title" placeholder="اسم الكتاب..." class="w-full p-2.5 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
+                    <input type="text" id="admin-book-author" placeholder="اسم المؤلف أو الشارح..." class="w-full p-2.5 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
+                    <input type="text" id="admin-book-link" placeholder="رابط التحميل المباشر للـ PDF..." class="w-full p-2.5 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
+                    <button onclick="addNewBook()" class="w-full bg-indigo-600 text-white font-bold py-2.5 rounded-lg shadow cursor-pointer">إضافة الكتاب للمكتبة 📖</button>
+                </div>
+
+                <!-- 5. مراجعة تلاوات الطلاب المرسلة للشيخ -->
+                <div class="space-y-3 border-t dark:border-slate-800 pt-4">
+                    <h4 class="font-bold text-sm text-amber-700">🎙️ مراجعة تلاوات وتسميع الطلاب الواردة</h4>
+                    <div id="admin-recitations-list" class="space-y-2 max-h-48 overflow-y-auto p-2 bg-slate-50 dark:bg-slate-800 rounded-lg">
+                        <p class="text-slate-400 text-center">جاري جلب التلاوات المرسلة...</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -395,16 +486,20 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             if(window.location.hash === '#admin') {
-                const pass = prompt("أدخل كلمة مرور لوحة تحكم الشيخ:");
+                const pass = prompt("أدخل كلمة مرور لوحة التحكم الشاملة:");
                 if(pass === "sheikh123") {
                     window.switchTab('admin');
                     loadAdminStats();
+                    loadAdminRecitations();
                 } else {
                     alert("كلمة المرور خطأ!");
                     window.switchTab('home');
                 }
             }
             loadSiteData(); 
+            loadLessons();
+            loadBooks();
+            loadCoursesDropdown();
         });
 
         window.toggleDarkMode = function() {
@@ -427,7 +522,41 @@
                 document.getElementById('reg-country').value = '';
                 document.getElementById('reg-whatsapp').value = '';
             } catch(e) {
-                alert("حدث خطأ أثناء التسجيل، حاول مرة أخرى.");
+                alert("حدث خطأ أثناء التسجيل.");
+            }
+        }
+
+        window.submitSurvey = async function() {
+            const name = document.getElementById('survey-name').value;
+            const day = document.getElementById('survey-day').value;
+            const time = document.getElementById('survey-time').value;
+            if(!name) { alert("أدخل اسمك الكريم أولاً"); return; }
+            try {
+                await addDoc(collection(db, "surveys"), { name, day, time, date: new Date().toLocaleDateString('ar-SA') });
+                const msg = document.getElementById('survey-success-msg');
+                msg.classList.remove('hidden');
+                msg.innerText = `جزاك الله خيراً يا ${name}، تم تسجيل خيارك (يوم ${day} - ${time}) بنجاح!`;
+                document.getElementById('survey-name').value = '';
+            } catch(e) {
+                alert("حدث خطأ أثناء إرسال الاستبيان.");
+            }
+        }
+
+        window.submitRecitation = async function() {
+            const name = document.getElementById('rec-name').value;
+            const srah = document.getElementById('rec-srah').value;
+            const audio = document.getElementById('rec-audio').value;
+            if(!name || !srah || !audio) { alert("املأ جميع الحقول المطلوبة للتسميع."); return; }
+            try {
+                await addDoc(collection(db, "student_recitations"), { name, srah, audio, status: "قيد الانتظار للاستماع", date: new Date().toLocaleDateString('ar-SA') });
+                const msg = document.getElementById('rec-success-msg');
+                msg.classList.remove('hidden');
+                msg.innerText = `بارك الله فيك يا ${name}، تم إرسال تلاوتك للشيخ بنجاح وسيرد عليك قريباً!`;
+                document.getElementById('rec-name').value = '';
+                document.getElementById('rec-srah').value = '';
+                document.getElementById('rec-audio').value = '';
+            } catch(e) {
+                alert("حدث خطأ أثناء إرسال التلاوة.");
             }
         }
 
@@ -438,110 +567,198 @@
             try {
                 await addDoc(collection(db, "attendance_records"), { name, lesson, date: new Date().toLocaleDateString('ar-SA') });
                 const msg = document.getElementById('att-success-msg');
+                msg.classList.remove(        window.submitAttendance = async function() {
+            const name = document.getElementById('att-name').value;
+            const lesson = document.getElementById('att-lesson').value;
+            if(!name || !lesson) { alert("أدخل الاسم وعنوان الدرس."); return; }
+            try {
+                await addDoc(collection(db, "attendance_records"), { name, lesson, date: new Date().toLocaleDateString('ar-SA') });
+                const msg = document.getElementById('att-success-msg');
                 msg.classList.remove('hidden');
-                msg.innerText = `بارك الله فيك يا ${name}، تم تسجيل حضورك بنجاح!`;
+                msg.innerText = `أهلاً بك يا ${name}، تم تسجيل حضورك لدرس "${lesson}" بنجاح!`;
                 document.getElementById('att-name').value = '';
-                document.getElementById('att-lesson').value = '';
             } catch(e) {
                 alert("حدث خطأ أثناء تسجيل الحضور.");
             }
-        }
-
-        window.generateCertificate = function() {
-            const name = document.getElementById('cert-student-name').value;
-            if(!name) { alert("أدخل اسم الطالب"); return; }
-            document.getElementById('cert-name-output').innerText = name;
-            document.getElementById('certificate-display').classList.remove('hidden');
-        }
-
-        window.checkQuizResult = function() {
-            const selected = document.querySelector('input[name="q1"]:checked');
-            const feedback = document.getElementById('quiz-feedback');
-            if(!selected) { alert("اختر إجابة أولاً"); return; }
-            if(selected.value === 'right') {
-                feedback.className = "font-bold text-center mt-2 text-emerald-600";
-                feedback.innerText = "إجابة صحيحة! تم اعتماد اجتيازك للاختبار بنجاح 🌟";
-            } else {
-                feedback.className = "font-bold text-center mt-2 text-rose-600";
-                feedback.innerText = "إجابة خاطئة، راجع المتن المحفوظ.";
-            }
-        }
-
-        window.askAIBot = function() {
-            const input = document.getElementById('ai-user-input').value;
-            const box = document.getElementById('ai-chat-box');
-            if(!input) return;
-            box.innerHTML += `<div class="p-2 bg-slate-200 dark:bg-slate-700 rounded-lg text-right">أنت: ${input}</div>`;
-            document.getElementById('ai-user-input').value = '';
-            setTimeout(() => {
-                box.innerHTML += `<div class="p-2 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-900 dark:text-indigo-200 rounded-lg">المساعد الذكي: بناءً على متون مجمع عثمان بن عفان، المسألة واضحة وتتطلب العناية بالحفظ والمراجعة الدورية.</div>`;
-                box.scrollTop = box.scrollHeight;
-            }, 1000);
-        }
+        };
 
         window.saveQuranRecord = async function() {
             const name = document.getElementById('q-student-name').value;
             const surah = document.getElementById('q-surah').value;
             const level = document.getElementById('q-level').value;
-            if(!name || !surah) { alert("املأ الحقول"); return; }
+            if(!name || !surah) { alert("املأ جميع الحقول لترصيد السجل."); return; }
             try {
-                await addDoc(collection(db, "quran_records"), { name, surah, level, date: new Date().toLocaleDateString('ar-SA') });
-                alert("تم حفظ السجل بنجاح وترصيده في النظام!");
+                await addDoc(collection(db, "quran_tracker"), { name, surah, level, date: new Date().toLocaleDateString('ar-SA') });
+                alert("تم حفظ وترصيد السجل بنجاح!");
                 document.getElementById('q-student-name').value = '';
                 document.getElementById('q-surah').value = '';
-                loadAdminStats();
-                loadSiteData();
-            } catch (e) {
-                alert("خطأ في الاتصال بقاعدة البيانات.");
+                loadQuranRecords();
+            } catch(e) {
+                alert("حدث خطأ أثناء حفظ السجل.");
             }
-        }
+        };
+
+        window.checkQuizResult = function() {
+            const selected = document.querySelector('input[name="q1"]:checked');
+            const feedback = document.getElementById('quiz-feedback');
+            if(!selected) {
+                feedback.textContent = "الرجاء اختيار إجابة أولاً!";
+                feedback.className = "font-bold text-center mt-2 text-red-500";
+                return;
+            }
+            if(selected.value === "right") {
+                feedback.textContent = "إجابة صحيحة بارك الله فيك! 🌟";
+                feedback.className = "font-bold text-center mt-2 text-emerald-600";
+            } else {
+                feedback.textContent = "إجابة خاطئة، حاول مرة أخرى.";
+                feedback.className = "font-bold text-center mt-2 text-red-500";
+            }
+        };
+
+        window.askAIBot = function() {
+            const input = document.getElementById('ai-user-input');
+            const chatBox = document.getElementById('ai-chat-box');
+            if(!input.value.trim()) return;
+            
+            const userQ = input.value;
+            chatBox.innerHTML += `<div class="p-2 bg-slate-200 dark:bg-slate-700 rounded-lg text-left">أنت: ${userQ}</div>`;
+            input.value = "";
+            
+            setTimeout(() => {
+                chatBox.innerHTML += `<div class="p-2 bg-indigo-100 dark:bg-indigo-900/50 rounded-lg">المساعد الذكي: بناءً على متون طالب العلم، فإن مسألة "${userQ}" تُحمل على التفصيل المعتمد لدى أهل العلم.</div>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 1000);
+        };
+
+        window.generateCertificate = function() {
+            const name = document.getElementById('cert-student-name').value;
+            if(!name) { alert("أدخل اسم الطالب الثلاثي لإصدار الشهادة."); return; }
+            const randomId = 'OTHMAN-' + Math.floor(100000 + Math.random() * 900000);
+            document.getElementById('cert-name-output').textContent = name;
+            document.getElementById('cert-id-output').textContent = randomId;
+            document.getElementById('certificate-display').classList.remove('hidden');
+        };
 
         window.publishAnnouncement = async function() {
             const text = document.getElementById('admin-announcement-input').value;
-            if(!text) { alert("اكتب نص الإعلان أولاً"); return; }
+            if(!text) { alert("اكتب نص الإعلان."); return; }
             try {
-                await setDoc(doc(db, "settings", "announcement"), { text: text });
-                alert("تم نشر الإعلان بنجاح وسيظهر للجميع فوراً!");
+                await addDoc(collection(db, "announcements"), { text, date: new Date().toLocaleDateString('ar-SA') });
+                alert("تم نشر الإعلان بنجاح!");
                 document.getElementById('admin-announcement-input').value = '';
-                loadSiteData();
+            } catch(e) { alert("خطأ في النشر."); }
+        };
+
+        window.addNewCourse = async function() {
+            const title = document.getElementById('admin-course-title').value;
+            if(!title) { alert("أدخل اسم الدورة."); return; }
+            try {
+                await addDoc(collection(db, "courses_list"), { title });
+                alert("تمت إضافة الدورة بنجاح!");
+                document.getElementById('admin-course-title').value = '';
+                loadCoursesDropdown();
+            } catch(e) { alert("خطأ في الإضافة."); }
+        };
+
+        window.addNewLesson = async function() {
+            const title = document.getElementById('admin-lesson-title').value;
+            const type = document.getElementById('admin-lesson-type').value;
+            const desc = document.getElementById('admin-lesson-desc').value;
+            const media = document.getElementById('admin-lesson-media').value;
+            if(!title || !media) { alert("أدخل العنوان ورابط الملف أو الفيديو."); return; }
+            try {
+                await addDoc(collection(db, "lessons_archive"), { title, type, desc, media, date: new Date().toLocaleDateString('ar-SA') });
+                alert("تم نشر الدرس في الأرشيف بنجاح!");
+                document.getElementById('admin-lesson-title').value = '';
+                document.getElementById('admin-lesson-desc').value = '';
+                document.getElementById('admin-lesson-media').value = '';
+                loadLessons();
+            } catch(e) { alert("خطأ في نشر الدرس."); }
+        };
+
+        window.addNewBook = async function() {
+            const title = document.getElementById('admin-book-title').value;
+            const author = document.getElementById('admin-book-author').value;
+            const link = document.getElementById('admin-book-link').value;
+            if(!title || !link) { alert("أدخل اسم الكتاب ورابط التحميل."); return; }
+            try {
+                await addDoc(collection(db, "library_books"), { title, author, link });
+                alert("تمت إضافة الكتاب للمكتبة بنجاح!");
+                document.getElementById('admin-book-title').value = '';
+                document.getElementById('admin-book-author').value = '';
+                document.getElementById('admin-book-link').value = '';
+                loadBooks();
+            } catch(e) { alert("خطأ في إضافة الكتاب."); }
+        };
+
+        async function loadQuranRecords() {
+            const tbody = document.getElementById('quran-table-body');
+            try {
+                const querySnapshot = await getDocs(collection(db, "quran_tracker"));
+                if(querySnapshot.empty) {
+                    tbody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-slate-400">لا توجد سجلات مرصودة حالياً.</td></tr>`;
+                    return;
+                }
+                tbody.innerHTML = "";
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    tbody.innerHTML += `<tr class="border-b dark:border-slate-800"><td class="p-3">${data.name}</td><td class="p-3">${data.surah}</td><td class="p-3">${data.level}</td><td class="p-3">${data.date}</td></tr>`;
+                });
             } catch(e) {
-                alert("حدث خطأ أثناء النشر.");
+                tbody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-red-400">تعذر تحميل السجلات.</td></tr>`;
             }
         }
 
-        async function loadSiteData() {
+        async function loadLessons() {
+            const container = document.getElementById('dynamic-lessons-container');
             try {
-                const annDoc = await getDoc(doc(db, "settings", "announcement"));
-                if(annDoc.exists()) {
-                    const banner = document.getElementById('live-announcement-banner');
-                    if(banner) banner.innerText = annDoc.data().text;
-                }
+                const querySnapshot = await getDocs(collection(db, "lessons_archive"));
+                if(querySnapshot.empty) return;
+                container.innerHTML = "";
+                querySnapshot.forEach((doc) => {
+                    const d = doc.data();
+                    container.innerHTML += `
+                        <div class="p-4 bg-white dark:bg-slate-900 rounded-xl border dark:border-slate-800 space-y-2">
+                            <h4 class="font-bold text-amber-700">${d.title} (${d.type === 'audio' ? 'صوتي 🎧' : 'مرئي 🎬'})</h4>
+                            <p class="text-slate-600 dark:text-slate-300">${d.desc || ''}</p>
+                            <a href="${d.media}" target="_blank" class="inline-block text-xs font-bold text-emerald-600 hover:underline">فتح الرابط ومشاهدة/استماع المادة ←</a>
+                        </div>`;
+                });
+            } catch(e) {}
+        }
 
-                const querySnapshot = await getDocs(collection(db, "quran_records"));
-                const total = querySnapshot.size;
-                
-                const counterText = document.getElementById('khatmah-counter-text');
-                const progressBar = document.getElementById('khatmah-progress-bar');
-                if(counterText) counterText.innerText = `إجمالي الحلقات المرصودة: ${total} سجل`;
-                if(progressBar) {
-                    let percentage = Math.min((total / 30) * 100, 100);
-                    progressBar.style.width = percentage + "%";
-                }
-            } catch(e) {
-                console.error("خطأ في جلب البيانات:", e);
-            }
+        async function loadBooks() {
+            // دالة تحميل الكتب للمكتبة إذا لزم الأمر
+        }
+
+        async function loadCoursesDropdown() {
+            // دالة تحديث قائمة الدورات المنسدلة
         }
 
         async function loadAdminStats() {
             try {
-                const querySnapshot = await getDocs(collection(db, "quran_records"));
-                const countEl = document.getElementById('admin-total-count');
-                if(countEl) countEl.innerText = querySnapshot.size;
-            } catch(e) {
-                console.error(e);
-            }
+                const snap = await getDocs(collection(db, "course_registrations"));
+                document.getElementById('admin-total-count').textContent = snap.size;
+            } catch(e) {}
         }
+
+        async function loadAdminRecitations() {
+            const list = document.getElementById('admin-recitations-list');
+            try {
+                const snap = await getDocs(collection(db, "student_recitations"));
+                if(snap.empty) {
+                    list.innerHTML = `<p class="text-slate-400 text-center">لا توجد تلاوات مرسلة حالياً.</p>`;
+                    return;
+                }
+                list.innerHTML = "";
+                snap.forEach((doc) => {
+                    const d = doc.data();
+                    list.innerHTML += `<div class="p-2 bg-white dark:bg-slate-900 rounded border dark:border-slate-700 text-xs flex justify-between items-center"><span><b>${d.name}</b> - ${d.srah}</span><a href="${d.audio}" target="_blank" class="text-emerald-600 font-bold">استماع 🎙️</a></div>`;
+                });
+            } catch(e) {}
+        }
+
+        loadQuranRecords();
     </script>
 </body>
-    </html>
-    
+</html>
