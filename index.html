@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مجمع عثمان بن عفان لتعليم القرآن وعلومه</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Cairo', sans-serif; scroll-behavior: smooth; }
@@ -16,12 +15,12 @@
 </head>
 <body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
 
-    <!-- شريط الإعلانات الفورية والديناميكية -->
+    <!-- شريط الإعلانات الفورية -->
     <div class="bg-amber-500 text-slate-950 text-xs py-2 px-4 font-bold text-center shadow-inner overflow-hidden whitespace-nowrap">
         <marquee behavior="scroll" direction="right" id="live-announcement-banner">📢 مرحباً بكم في المنصة العالمية لمجمع عثمان بن عفان لتعليم القرآن وعلومه - تصفح الأقسام عبر القائمة الجانبية!</marquee>
     </div>
 
-    <!-- شريط التنقل العلوي مع القائمة الجانبية -->
+    <!-- الشريط العلوي -->
     <header class="islamic-gradient text-white shadow-md sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-3 space-x-reverse">
@@ -36,60 +35,69 @@
 
             <div class="flex items-center gap-2">
                 <button onclick="switchTab('home')" class="bg-emerald-700 hover:bg-emerald-600 text-white text-xs px-3 py-1.5 rounded-lg transition font-semibold shadow cursor-pointer hidden md:inline-block">الرئيسية</button>
-                <button onclick="switchTab('winners')" class="bg-amber-600 hover:bg-amber-500 text-white text-xs px-3 py-1.5 rounded-lg transition font-semibold cursor-pointer">🏆 الفائزون</button>
+                <button onclick="switchTab('winners')" class="bg-amber-600 hover:bg-amber-500 text-white text-xs px-3 py-1.5 rounded-lg transition font-semibold cursor-pointer">🏆 لوحة الشفافية</button>
                 <button onclick="toggleDarkMode()" class="bg-slate-800 text-amber-300 text-xs px-2.5 py-1.5 rounded-lg border border-amber-400/30 cursor-pointer">🌓</button>
             </div>
         </div>
     </header>
 
-    <!-- القائمة الجانبية المنسدلة (Sidebar Drawer) -->
+    <!-- القائمة الجانبية (خالية تماماً من أي زر أدمن لراحة البال) -->
     <div id="side-drawer" class="fixed inset-y-0 right-0 z-50 w-72 bg-slate-900 text-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col p-5 border-l border-emerald-800">
         <div class="flex justify-between items-center pb-4 border-b border-slate-800">
             <h3 class="font-bold text-amber-400 text-sm font-amiri">قائمة أقسام المنصة العالمية</h3>
             <button onclick="toggleSidebar()" class="text-slate-400 hover:text-white text-lg font-bold cursor-pointer">✕</button>
         </div>
         <div class="flex flex-col gap-2 mt-4 overflow-y-auto flex-grow text-xs">
-            <button onclick="switchTab('home'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">🏠 الرئيسية</button>
-            <button onclick="switchTab('about'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">ℹ️ من نحن (الرؤية العالمية)</button>
-            <button onclick="switchTab('register-course'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2 text-amber-300 font-bold">📝 التسجيل الإلكتروني للدورات</button>
+            <button onclick="switchTab('home'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">🏠 الرئيسية وإشراقة اليوم</button>
+            <button onclick="switchTab('roadmap'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2 text-amber-300 font-bold">🗺️ دليل المتون العلمية (الخريطة)</button>
+            <button onclick="switchTab('register-course'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">📝 التسجيل الإلكتروني للدورات</button>
             <button onclick="switchTab('attendance'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">✅ سجل حضور الدروس اليومية</button>
-            <button onclick="switchTab('winners'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2 text-amber-400 font-bold">🏆 لوحة الفائزين بالجوائز المالية</button>
+            <button onclick="switchTab('winners'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2 text-amber-400 font-bold">🏆 لوحة الشرف والشفافية</button>
             <button onclick="switchTab('quran-section'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">📖 قسم القرآن الكريم وحلقاته</button>
-            <button onclick="switchTab('sharia-section'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">📚 قسم العلوم الشرعية (المتون والتفريغات)</button>
+            <button onclick="switchTab('sharia-section'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">📚 قسم العلوم الشرعية والمتون</button>
             <button onclick="switchTab('skills-section'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">💡 قسم تنمية المهارات</button>
             <button onclick="switchTab('tarbiya-section'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">🌱 قسم التربية الإسلامية</button>
             <button onclick="switchTab('quran-tracker'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">📊 راصد حلقات التحفيظ والطلاب</button>
             <button onclick="switchTab('quiz'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">📝 الاختبارات الآلية والشهادة</button>
-            <button onclick="switchTab('audio'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">🎧 الأرشيف الصوتي والنصي</button>
+            <button onclick="switchTab('audio'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">🎧 الأرشيف الصوتي وريلز الفوائد</button>
             <button onclick="switchTab('ai-bot'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">🤖 المساعد الذكي لمتون العلم</button>
             <button onclick="switchTab('faq'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">❓ الأسئلة الشائعة وفتاوى الشيخ</button>
             <button onclick="switchTab('certificate'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2">🎓 شهادة الاجتياز الرقمية</button>
-            <button onclick="switchTab('admin'); toggleSidebar();" class="text-right p-2.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex items-center gap-2 text-amber-400 font-bold">🔒 لوحة تحكم الشيخ</button>
         </div>
         <div class="pt-4 border-t border-slate-800 text-[10px] text-center text-slate-400">
             مجمع عثمان بن عفان © 2026
         </div>
     </div>
 
-    <!-- المحتوى الرئيسي -->
     <main class="flex-grow container mx-auto px-4 py-6 max-w-4xl space-y-6">
 
-        <!-- تبويب الرئيسية -->
+        <!-- تبويب الرئيسية مع آية اليوم والعداد التنازلي -->
         <div id="tab-home" class="tab-content space-y-6">
-            <div class="islamic-gradient text-white p-6 md:p-8 rounded-2xl shadow-xl relative overflow-hidden border border-emerald-700/50">
-                <div class="absolute -left-10 -bottom-10 opacity-10 text-9xl font-amiri">📖</div>
+            <div class="islamic-gradient text-white p-6 md:p-8 rounded-2xl shadow-xl relative overflow-hidden border border-emerald-700/50 space-y-4">
                 <div class="relative z-10">
                     <span class="bg-amber-500/20 text-amber-300 text-xs px-3 py-1 rounded-full font-semibold border border-amber-500/30">مشروع البرامج التأهيلية - انطلاقة عالمية</span>
                     <h2 class="text-2xl md:text-3xl font-bold font-amiri mt-3 mb-2 leading-tight">مرحباً بك في المنصة العالمية لمجمع عثمان بن عفان</h2>
-                    <p class="text-slate-200 text-sm md:text-base leading-relaxed mb-6">سجل في الدورات الجديدة، تابع حضورك يومياً، اختبر أونلاين، واستعرض لوحة الشرف والفائزين بالجوائز المالية.</p>
-                    <div class="flex flex-wrap gap-3">
-                        <button onclick="switchTab('register-course')" class="gold-gradient hover:opacity-90 text-white font-semibold px-5 py-2.5 rounded-xl shadow cursor-pointer text-sm flex items-center gap-2">التسجيل الإلكتروني للدورات 📝</button>
-                        <button onclick="switchTab('winners')" class="bg-amber-600 hover:bg-amber-500 text-white text-sm px-4 py-2.5 rounded-xl cursor-pointer font-semibold flex items-center gap-2">لوحة الفائزين بالجوائز 🏆</button>
-                    </div>
+                    <p class="text-slate-200 text-sm md:text-base leading-relaxed mb-4">سجل في الدورات الجديدة، تابع حضورك يومياً، واكتشف الخريطة العلمية للمتون.</p>
                 </div>
             </div>
 
-            <!-- عداد إنجاز ختمة القرآن الجماعية -->
+            <!-- فكرة 1: آية اليوم والتدبر (عالمية دينياً) -->
+            <div class="bg-emerald-900/10 dark:bg-slate-900 border border-emerald-500/30 p-5 rounded-2xl shadow-sm space-y-2">
+                <span class="text-xs font-bold text-emerald-700 dark:text-emerald-400 block">✨ إشراقة وتدبر (آية اليوم)</span>
+                <p class="font-amiri text-lg text-emerald-900 dark:text-emerald-200">"وَاتَّقُوا اللَّهَ ۖ وَيُعَلِّمُكُمُ اللَّهُ ۗ وَاللَّهُ بِكُلِّ شَيْءٍ عَلِيمٌ"</p>
+                <p class="text-xs text-slate-600 dark:text-slate-400">التوجيه: تقوى الله عز وجل من أعظم مفاتيح العلم النافع والفهم السديد في المتون والعلوم الشرعية.</p>
+            </div>
+
+            <!-- فكرة 3: العداد التنازلي للدورة القادمة -->
+            <div class="gold-gradient text-white p-5 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-3">
+                <div>
+                    <h4 class="font-bold text-sm">⏳ العد التنازلي لانطلاق الدورة التأهيلية الكبرى القادمة</h4>
+                    <p class="text-xs text-amber-100">سجل بياناتك مبكراً لضمان المقعد (أونلاين / حضوري).</p>
+                </div>
+                <button onclick="switchTab('register-course')" class="bg-white text-amber-900 font-bold text-xs px-4 py-2 rounded-xl shadow cursor-pointer">سجل الآن 🚀</button>
+            </div>
+
+            <!-- عداد ختمة القرآن -->
             <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 rounded-2xl shadow-sm space-y-3">
                 <div class="flex justify-between items-center">
                     <h4 class="font-bold text-sm text-emerald-800 dark:text-emerald-400">📖 تقدم ختمة المجمع الجماعية</h4>
@@ -100,15 +108,34 @@
                 </div>
                 <p class="text-[11px] text-slate-500">كلما تم رصد حلقات الطلاب، زاد تقدم الختمة الجماعية للمجمع تلقائياً!</p>
             </div>
-    </div>
-                <!-- تبويب التسجيل الإلكتروني -->
+        </div>
+            <!-- فكرة 4: خريطة المتون العلمية المعتمدة (Roadmap) -->
+        <div id="tab-roadmap" class="tab-content hidden space-y-6">
+            <div class="flex justify-between items-center">
+                <h3 class="text-xl font-bold text-amber-800">🗺️ خريطة المتون العلمية المعتمدة</h3>
+                <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
+            </div>
+            <div class="space-y-4 text-xs">
+                <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border dark:border-slate-800 space-y-2">
+                    <span class="bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full font-bold">المستوى الأول (المبتدئين)</span>
+                    <h4 class="font-bold text-sm text-amber-700 mt-2">متن الأخضري في الفقه المالكي + الأصول الثلاثة</h4>
+                    <p class="text-slate-600 dark:text-slate-300">مخصص لضبط العبادات الأساسية وصحة العقيدة والتوحيد.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border dark:border-slate-800 space-y-2">
+                    <span class="bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full font-bold">المستوى الثاني (المتوسطين)</span>
+                    <h4 class="font-bold text-sm text-amber-700 mt-2">متون الحديث والعقيدة المتقدمة</h4>
+                    <p class="text-slate-600 dark:text-slate-300">التوسع في حفظ الأربعين النووية ومختصرات الفقه.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- تبويب التسجيل الإلكتروني -->
         <div id="tab-register-course" class="tab-content hidden space-y-6">
             <div class="flex justify-between items-center">
                 <h3 class="text-xl font-bold text-amber-800">📝 التسجيل الإلكتروني للدورات الجديدة</h3>
                 <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
             </div>
             <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4 max-w-lg mx-auto text-xs">
-                <p class="text-slate-600 dark:text-slate-400">سجل بياناتك للانضمام لدورات القرآن والمتون عبر المنصة:</p>
                 <input type="text" id="reg-name" placeholder="الاسم الثلاثي..." class="w-full p-3 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
                 <input type="text" id="reg-country" placeholder="الدولة / المدينة..." class="w-full p-3 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
                 <select id="reg-department" class="w-full p-3 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
@@ -134,7 +161,6 @@
                 <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
             </div>
             <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4 max-w-lg mx-auto text-xs">
-                <p class="text-slate-600 dark:text-slate-400">اثبت حضورك للدرس اليومي ليصل تقريرك للشيخ مباشرة:</p>
                 <input type="text" id="att-name" placeholder="اسم الطالب..." class="w-full p-3 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
                 <input type="text" id="att-lesson" placeholder="عنوان الدرس أو المحاضرة..." class="w-full p-3 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
                 <button onclick="submitAttendance()" class="w-full islamic-gradient text-white font-bold py-3 rounded-lg shadow cursor-pointer">تسجيل الحضور الآن 📌</button>
@@ -142,106 +168,85 @@
             </div>
         </div>
 
-        <!-- تبويب لوحة الفائزين -->
+        <!-- لوحة الشرف والشفافية (معتمدة على المصداقية والواقعية) -->
         <div id="tab-winners" class="tab-content hidden space-y-6">
             <div class="flex justify-between items-center">
-                <h3 class="text-xl font-bold text-amber-800">🏆 لوحة الشرف والفائزين بالجوائز المالية</h3>
+                <h3 class="text-xl font-bold text-amber-800">🏆 لوحة الشرف والشفافية</h3>
                 <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
             </div>
-            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4 text-xs leading-relaxed text-slate-700 dark:text-slate-300">
-                <h4 class="font-bold text-sm text-amber-700">دليل الشفافية والجوائز الممنوحة للطلاب المتفوقين:</h4>
-                <p>تكريماً للمجدين في الدورات والمسابقات، يمنح مجمع عثمان بن عفان جوائز مالية مباشرة للمتصدّرين:</p>
-                <div class="p-4 bg-amber-50 dark:bg-slate-800 rounded-xl border border-amber-200 dark:border-slate-700 space-y-2">
-                    <div class="flex justify-between items-center font-bold text-amber-800 dark:text-amber-400">
-                        <span>الطالب: عبدالرحمن محمد</span>
-                        <span>الجائزة: 50,000 جنيه سوداني</span>
-                    </div>
-                    <p class="text-[11px] text-slate-500">الدورة: إتمام حفظ متن الأخضري - تم التحويل عبر تطبيق بنكك بنجاح ✅ (دليل التحويل موثق لدى إدارة المجمع).</p>
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4 text-xs leading-relaxed">
+                <h4 class="font-bold text-sm text-amber-700">دليل الشفافية والمصداقية في المجمع:</h4>
+                <p class="text-slate-600 dark:text-slate-300">يتم إدراج أسماء الفائزين والمتفوقين رسمياً في المسابقات بعد اعتماد النتائج النهائية من إدارة المجمع وتوثيق عمليات التحويل عبر الجهات المعتمدة.</p>
+                <div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border dark:border-slate-700 text-center text-slate-500">
+                    لا توجد مسابقات منتهية معلنة حالياً - ترقبوا المسابقة القادمة قريباً 🔔
                 </div>
             </div>
         </div>
 
-        <!-- تبويب من نحن -->
-        <div id="tab-about" class="tab-content hidden space-y-6">
-            <div class="flex justify-between items-center">
-                <h3 class="text-xl font-bold text-emerald-800">ℹ️ من نحن - الرؤية العالمية</h3>
-                <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
-            </div>
-            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4 text-xs leading-relaxed text-slate-700 dark:text-slate-300">
-                <h4 class="font-bold text-sm text-amber-700">نبذة عن المجمع والتحول الرقمي:</h4>
-                <p>مجمع عثمان بن عفان لتعليم القرآن وعلومه يسعى للانتقال من النطاق المحلي إلى منصة تعليمية عالمية تخدم طلاب القرآن والمتون في كل مكان.</p>
-            </div>
-        </div>
-
-        <!-- الأقسام الأربعة -->
+        <!-- الأقسام المختلفة -->
         <div id="tab-quran-section" class="tab-content hidden space-y-6">
             <div class="flex justify-between items-center">
                 <h3 class="text-xl font-bold text-amber-800">📖 قسم القرآن الكريم وحلقاته</h3>
                 <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
             </div>
-            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4 text-xs leading-relaxed">
-                <p>إدارة حلقات التحفيظ وتدوين المحصلة (من سورة كذا إلى سورة كذا) للطلاب عبر راصد الحلقات.</p>
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 text-xs">
                 <button onclick="switchTab('quran-tracker')" class="gold-gradient text-white font-bold py-2 px-4 rounded-lg shadow cursor-pointer">الذهاب لراصد الحلقات 📝</button>
             </div>
         </div>
 
         <div id="tab-sharia-section" class="tab-content hidden space-y-6">
             <div class="flex justify-between items-center">
-                <h3 class="text-xl font-bold text-emerald-800">📚 قسم العلوم الشرعية (المتون والتفريغات)</h3>
+                <h3 class="text-xl font-bold text-emerald-800">📚 قسم العلوم الشرعية</h3>
                 <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
             </div>
-            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4 text-xs leading-relaxed">
-                <p>دراسة الفقه المالكي والعقيدة مع التفريغات النصية المكتوبة والتسجيلات الصوتية.</p>
-                <button onclick="switchTab('audio')" class="bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg shadow cursor-pointer">استعرض الأرشيف الصوتي 🎧</button>
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 text-xs">
+                <button onclick="switchTab('audio')" class="bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg shadow cursor-pointer">الأرشيف الصوتي وريلز الفوائد 🎧</button>
             </div>
         </div>
 
         <div id="tab-skills-section" class="tab-content hidden space-y-6">
             <div class="flex justify-between items-center">
-                <h3 class="text-xl font-bold text-indigo-700">💡 قسم تنمية المهارات</h3>
+                <h3 class="text-xl font-bold text-indigo-700">💡 تنمية المهارات</h3>
                 <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
             </div>
-            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4 text-xs leading-relaxed">
-                <p>برامج وورش عمل مصممة لتطوير مهارات الطلاب الشخصية وتنظيم الوقت واستثمار التقنية.</p>
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 text-xs">
+                <p>برامج وورش عمل لتطوير المهارات.</p>
             </div>
         </div>
 
         <div id="tab-tarbiya-section" class="tab-content hidden space-y-6">
             <div class="flex justify-between items-center">
-                <h3 class="text-xl font-bold text-emerald-700">🌱 قسم التربية الإسلامية</h3>
+                <h3 class="text-xl font-bold text-emerald-700">🌱 التربية الإسلامية</h3>
                 <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
             </div>
-            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4 text-xs leading-relaxed">
-                <p>غرس القيم الأخلاقية والآداب النبوية ومجالس الذكر والتربية العملية.</p>
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 text-xs">
+                <p>غرس القيم الأخلاقية والآداب النبوية.</p>
             </div>
         </div>
-
-        <!-- راصد الحلقات -->
+            <!-- راصد الحلقات -->
         <div id="tab-quran-tracker" class="tab-content hidden space-y-6">
             <div class="flex justify-between items-center">
                 <h3 class="text-xl font-bold text-amber-800">📖 راصد حلقات تحفيظ القرآن الكريم</h3>
                 <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
             </div>
-            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4">
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4 text-xs">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <input type="text" id="q-student-name" placeholder="اسم الطالب الكامل..." class="text-xs p-2.5 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
-                    <input type="text" id="q-surah" placeholder="من سورة كذا إلى سورة كذا (المحصلة)..." class="text-xs p-2.5 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
+                    <input type="text" id="q-student-name" placeholder="اسم الطالب الكامل..." class="p-2.5 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
+                    <input type="text" id="q-surah" placeholder="المحصلة (من سورة.. إلى..)..." class="p-2.5 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <select id="q-level" class="text-xs p-2.5 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
-                        <option value="ممتاز جداً (متزود بإتقان)">ممتاز جداً (متزود بإتقان)</option>
-                        <option value="جيد جداً (يحتاج مراجعة)">جيد جداً (يحتاج مراجعة)</option>
+                    <select id="q-level" class="p-2.5 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
+                        <option value="ممتاز جداً">ممتاز جداً (متزود بإتقان)</option>
+                        <option value="جيد جداً">جيد جداً (يحتاج مراجعة)</option>
                     </select>
-                    <button onclick="saveQuranRecord()" class="gold-gradient text-white text-xs font-bold py-2.5 rounded-lg shadow cursor-pointer">حفظ وترصيد السجل في النظام 💾</button>
+                    <button onclick="saveQuranRecord()" class="gold-gradient text-white font-bold py-2.5 rounded-lg shadow cursor-pointer">حفظ وترصيد السجل 💾</button>
                 </div>
-                <input type="text" id="quran-search-input" onkeyup="filterQuranRecords()" placeholder="🔍 ابحث عن اسم طالب في الحلقات..." class="w-full text-xs p-2.5 rounded-lg border dark:border-slate-700 dark:bg-slate-800 mt-2">
-                
                 <div class="overflow-x-auto mt-4">
                     <table class="w-full text-right text-xs">
                         <thead>
                             <tr class="bg-slate-100 dark:bg-slate-800 border-b dark:border-slate-700">
                                 <th class="p-3">اسم الطالب</th>
-                                <th class="p-3">المحصلة (من سورة.. إلى..)</th>
+                                <th class="p-3">المحصلة</th>
                                 <th class="p-3">المستوى</th>
                                 <th class="p-3">التاريخ</th>
                             </tr>
@@ -254,131 +259,108 @@
             </div>
         </div>
 
-        <!-- الاختبارات أونلاين -->
         <div id="tab-quiz" class="tab-content hidden space-y-6">
             <div class="flex justify-between items-center">
                 <h3 class="text-xl font-bold text-emerald-800">📝 اختبارات الدورات أونلاين</h3>
                 <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
             </div>
-            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4 max-w-lg mx-auto">
-                <p class="text-xs text-slate-600 dark:text-slate-400">اختبر معلوماتك أونلاين للحصول على شهادة الاجتياز:</p>
-                <div class="space-y-3 text-xs">
-                    <p class="font-bold">س: ما هي الأصول الثلاثة التي يجب على الإنسان معرفتها؟</p>
-                    <div class="space-y-2">
-                        <label class="block p-2 rounded bg-slate-100 dark:bg-slate-800 cursor-pointer"><input type="radio" name="q1" value="wrong"> معرفة النبي والقرآن والصلاة</label>
-                        <label class="block p-2 rounded bg-slate-100 dark:bg-slate-800 cursor-pointer"><input type="radio" name="q1" value="right"> معرفة العبد ربه ودينه ونبيه</label>
-                    </div>
-                    <button onclick="checkQuizResult()" class="w-full islamic-gradient text-white font-bold py-2.5 rounded-lg shadow mt-2 cursor-pointer">تحقق من الإجابة واصدار الشهادة 🎯</button>
-                    <p id="quiz-feedback" class="font-bold text-center mt-2"></p>
-                </div>
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4 max-w-lg mx-auto text-xs">
+                <p class="font-bold">س: ما هي الأصول الثلاثة الواجب معرفتها؟</p>
+                <label class="block p-2 rounded bg-slate-100 dark:bg-slate-800 cursor-pointer"><input type="radio" name="q1" value="right"> معرفة العبد ربه ودينه ونبيه</label>
+                <button onclick="checkQuizResult()" class="w-full islamic-gradient text-white font-bold py-2.5 rounded-lg shadow cursor-pointer">تحقق من الإجابة 🎯</button>
+                <p id="quiz-feedback" class="font-bold text-center mt-2"></p>
             </div>
         </div>
 
-        <!-- المساعد الذكي -->
         <div id="tab-ai-bot" class="tab-content hidden space-y-6">
             <div class="flex justify-between items-center">
-                <h3 class="text-xl font-bold text-indigo-700 dark:text-indigo-400">🤖 المساعد الذكي لمتون العلم</h3>
+                <h3 class="text-xl font-bold text-indigo-700">🤖 المساعد الذكي لمتون العلم</h3>
                 <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
             </div>
-            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4 max-w-xl mx-auto">
-                <p class="text-xs text-slate-600 dark:text-slate-400">اسأل عن أحكام الفقه والعقيدة:</p>
-                <div id="ai-chat-box" class="h-48 overflow-y-auto bg-slate-50 dark:bg-slate-800 p-3 rounded-xl border dark:border-slate-700 space-y-2 text-xs">
-                    <div class="p-2 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-900 dark:text-indigo-200 rounded-lg">مرحباً بك! أنا مساعدك الذكي في متون مجمع عثمان بن عفان.</div>
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4 max-w-xl mx-auto text-xs">
+                <div id="ai-chat-box" class="h-48 overflow-y-auto bg-slate-50 dark:bg-slate-800 p-3 rounded-xl border dark:border-slate-700 space-y-2">
+                    <div class="p-2 bg-indigo-100 dark:bg-indigo-900/50 rounded-lg">مرحباً بك! أنا مساعدك الذكي في متون مجمع عثمان بن عفان.</div>
                 </div>
                 <div class="flex gap-2">
-                    <input type="text" id="ai-user-input" placeholder="اكتب سؤالك هنا..." class="flex-grow text-xs p-2.5 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
-                    <button onclick="askAIBot()" class="bg-indigo-700 text-white text-xs px-4 py-2.5 rounded-lg font-bold cursor-pointer">إرسال 🚀</button>
+                    <input type="text" id="ai-user-input" placeholder="اكتب سؤالك هنا..." class="flex-grow p-2.5 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
+                    <button onclick="askAIBot()" class="bg-indigo-700 text-white px-4 py-2.5 rounded-lg font-bold cursor-pointer">إرسال 🚀</button>
                 </div>
             </div>
         </div>
 
-        <!-- الأسئلة الشائعة -->
         <div id="tab-faq" class="tab-content hidden space-y-6">
             <div class="flex justify-between items-center">
                 <h3 class="text-xl font-bold">❓ الأسئلة الشائعة وفتاوى الشيخ</h3>
                 <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
             </div>
-            <div id="faq-container" class="space-y-3">
-                <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border dark:border-slate-800 shadow-sm">
-                    <h4 class="font-bold text-sm text-amber-700 dark:text-amber-400">س: ما هي الطريقة المثلى لمراجعة المحفوظ؟</h4>
-                    <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">ج: إجابة الشيخ: ربط الحفظ الجديد بالقريب والبعيد مع القراءة في صلاة الليل.</p>
-                </div>
+            <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border dark:border-slate-800 shadow-sm text-xs">
+                <h4 class="font-bold text-amber-700">س: ما هي الطريقة المثلى لمراجعة المحفوظ؟</h4>
+                <p class="text-slate-600 dark:text-slate-300 mt-1">ج: ربط الحفظ الجديد بالقريب والبعيد مع القراءة في الصلاة.</p>
             </div>
         </div>
 
-        <!-- الأرشيف الصوتي -->
+        <!-- فكرة 2: ركن الأرشيف الصوتي وريلز الفوائد السريعة -->
         <div id="tab-audio" class="tab-content hidden space-y-6">
             <div class="flex justify-between items-center">
-                <h3 class="text-xl font-bold">🎧 الأرشيف الصوتي والتفريغات النصية</h3>
+                <h3 class="text-xl font-bold">🎧 الأرشيف الصوتي وريلز الفوائد</h3>
                 <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
             </div>
-            <div class="islamic-gradient text-white p-5 rounded-2xl shadow-lg space-y-3">
-                <span id="now-playing-title" class="text-xs text-amber-300 font-bold block">اختر درساً للاستماع المباشر</span>
-                <audio id="main-audio-player" controls class="w-full h-10 rounded-lg filter invert-90"></audio>
-            </div>
-            <div id="dynamic-lessons-list" class="space-y-3 text-xs">
-                <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border dark:border-slate-800 shadow-sm space-y-2">
-                    <h4 class="font-bold text-amber-700">شرح متن الأخضري (الدرس الأول)</h4>
-                    <p class="text-slate-600 dark:text-slate-300">يحتوي هذا الدرس على الشرح الصوتي بالإضافة إلى التفريغ النصي المكتوب للمراجعة.</p>
-                </div>
+            <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border dark:border-slate-800 space-y-3 text-xs">
+                <h4 class="font-bold text-amber-700">🎙️ قطوف دقيقة (ريلز علمية صوتية)</h4>
+                <p class="text-slate-600 dark:text-slate-300">دروس صوتية مركزة لا تتجاوز دقيقتين في آداب طالب العلم وحفظ المتون.</p>
             </div>
         </div>
 
-        <!-- الشهادة الرقمية -->
         <div id="tab-certificate" class="tab-content hidden space-y-6">
             <div class="flex justify-between items-center">
                 <h3 class="text-xl font-bold">🎓 شهادة الاجتياز الرقمية</h3>
                 <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
             </div>
-            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4 max-w-lg mx-auto text-center">
-                <input type="text" id="cert-student-name" placeholder="اسم الطالب الثلاثي..." class="w-full text-xs p-3 rounded-lg border dark:border-slate-700 dark:bg-slate-800 text-center font-bold">
-                <button onclick="generateCertificate()" class="w-full islamic-gradient text-white text-xs font-bold py-3 rounded-lg shadow cursor-pointer">إصدار الشهادة الرسمية 🎖️</button>
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-4 max-w-lg mx-auto text-center text-xs">
+                <input type="text" id="cert-student-name" placeholder="اسم الطالب الثلاثي..." class="w-full p-3 rounded-lg border dark:border-slate-700 dark:bg-slate-800 text-center font-bold">
+                <button onclick="generateCertificate()" class="w-full islamic-gradient text-white font-bold py-3 rounded-lg shadow cursor-pointer">إصدار الشهادة الرسمية 🎖️</button>
                 <div id="certificate-display" class="hidden p-6 border-4 border-amber-500 rounded-xl bg-amber-50/50 dark:bg-slate-800 space-y-3 mt-4">
                     <h4 class="font-amiri text-xl font-bold text-emerald-900 dark:text-emerald-400">شهادة إتمام دورة علمية معتمدة</h4>
                     <h3 id="cert-name-output" class="text-lg font-bold text-amber-700"></h3>
-                    <p class="text-[11px] text-slate-600 dark:text-slate-300">أتم بنجاح متطلبات البرامج التأهيلية والحفظ والأقسام.</p>
                 </div>
             </div>
         </div>
 
-        <!-- لوحة تحكم الشيخ -->
+        <!-- لوحة تحكم الشيخ (مخفية تماماً وتفتح عبر #admin بكلمة السر sheikh123) -->
         <div id="tab-admin" class="tab-content hidden space-y-6">
             <div class="flex justify-between items-center">
                 <h3 class="text-xl font-bold text-amber-800">🔒 لوحة تحكم الشيخ (مؤمّنة)</h3>
                 <button onclick="switchTab('home')" class="text-xs bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-semibold cursor-pointer">الرئيسية ←</button>
             </div>
-            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-6 max-w-2xl mx-auto">
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border dark:border-slate-800 space-y-6 max-w-2xl mx-auto text-xs">
                 <div class="grid grid-cols-2 gap-3 text-center">
                     <div class="p-4 bg-emerald-50 dark:bg-slate-800 rounded-xl border dark:border-slate-700">
-                        <span class="text-xs text-slate-500 block">إجمالي السجلات المرصودة</span>
+                        <span class="text-slate-500 block">إجمالي السجلات المرصودة</span>
                         <h4 id="admin-total-count" class="text-lg font-bold text-emerald-700">0</h4>
                     </div>
                     <div class="p-4 bg-amber-50 dark:bg-slate-800 rounded-xl border dark:border-slate-700">
-                        <span class="text-xs text-slate-500 block">حالة الاتصال بـ Firebase</span>
+                        <span class="text-slate-500 block">حالة الاتصال بـ Firebase</span>
                         <h4 class="text-lg font-bold text-amber-600">متصل 🟢</h4>
                     </div>
                 </div>
                 <div class="space-y-4 border-t dark:border-slate-800 pt-4">
                     <h4 class="font-bold text-sm">📢 نشر تنبيه فوري أونلاين</h4>
-                    <input type="text" id="admin-announcement-input" placeholder="اكتب الإعلان الجديد هنا..." class="w-full text-xs p-2.5 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
-                    <button onclick="publishAnnouncement()" class="w-full bg-amber-600 text-white text-xs font-bold py-2.5 rounded-lg shadow cursor-pointer">نشر الإعلان فوراً للطلاب 🚀</button>
+                    <input type="text" id="admin-announcement-input" placeholder="اكتب الإعلان الجديد هنا..." class="w-full p-2.5 rounded-lg border dark:border-slate-700 dark:bg-slate-800">
+                    <button onclick="publishAnnouncement()" class="w-full bg-amber-600 text-white font-bold py-2.5 rounded-lg shadow cursor-pointer">نشر الإعلان فوراً للطلاب 🚀</button>
                 </div>
             </div>
         </div>
 
     </main>
 
-    <!-- زر واتساب العائم -->
     <a href="https://api.whatsapp.com/send?phone=+249961297795&text=السلام%20عليكم%20يا%20مهندس،%20أرغب%20في%20الاستفسار%20عن%20تصميم%20منصة%20دينية..." target="_blank" class="fixed bottom-5 left-5 bg-emerald-600 hover:bg-emerald-500 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-2xl z-50 transition transform hover:scale-110 text-xl cursor-pointer" title="تواصل لتصميم منصة مسجدك">💬</a>
 
-    <!-- الفوتر -->
     <footer class="bg-slate-900 text-slate-400 text-center py-5 text-xs mt-auto border-t border-slate-800 space-y-1">
-        <p>جميع الحقوق محفوظة © مجمع عثمان بن عفان لتعليم القرآن وعلومه - مشروع البرامج التأهيلية</p>
+        <p>جميع الحقوق محفوظة © مجمع عثمان بن عفان لتعليم القرآن وعلومه</p>
         <p class="text-amber-400 font-semibold">✨ تصميم المواقع والمنصات الدينية مجاني لوجه الله تعالى ✨</p>
         <p class="text-slate-500">تم تطوير المنصة بواسطة: طلبك استور 🚀</p>
     </footer>
 
-    <!-- البرمجة الديناميكية وتشغيل الأقسام والقائمة -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, addDoc, getDocs, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -561,8 +543,5 @@
         }
     </script>
 </body>
-</html>
-
-                        
-                    
+    </html>
     
