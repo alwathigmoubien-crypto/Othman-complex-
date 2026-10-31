@@ -871,7 +871,7 @@
             }
         };
     </script>
-        <!-- ميزة 1: غرفة التزامن اللحظي لصفحات المصحف (Live Quran Sync Room) -->
+            <!-- ميزة 1: غرفة التزامن اللحظي لصفحات المصحف (Live Quran Sync Room) -->
         <div id="tab-live-sync-quran" class="tab-content hidden space-y-6">
             <div class="flex justify-between items-center">
                 <h3 class="text-xl font-bold text-amber-800">📖 غرفة المصحف المتزامن لحظياً مع الشيخ</h3>
@@ -903,14 +903,35 @@
                 </div>
             </div>
         </div>
-          // دوال تشغيل المميزات النادرة الجديدة
+
+    </main>
+
+    <!-- الفوتر -->
+    <footer class="bg-slate-900 text-slate-400 text-center py-4 text-[11px] border-t border-slate-800 mt-10">
+        <p>مجمع عثمان بن عفان لتعليم القرآن وعلومه - مشروع البرامج التأهيلية © 2026</p>
+        <p class="mt-1 text-amber-400 font-semibold">✨ تم تطوير المنصة بواسطة: طلبك استور 🚀</p>
+    </footer>
+
+    <!-- سكريبت التشغيل والتحكم (مغلق بأمان) -->
+    <script>
+        window.switchTab = function(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            const target = document.getElementById('tab-' + tabId);
+            if(target) {
+                target.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        };
+
         window.startPomodoroTimer = function() {
             let timeLeft = 25 * 60;
             const timerDisplay = document.getElementById('pomodoro-timer');
             const interval = setInterval(() => {
                 let minutes = Math.floor(timeLeft / 60);
                 let seconds = timeLeft % 60;
-                timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                if(timerDisplay) {
+                    timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                }
                 timeLeft--;
                 if(timeLeft < 0) {
                     clearInterval(interval);
@@ -919,5 +940,6 @@
             }, 1000);
             alert("بدأت جلسة التركيز الهادئة. ثبّت الله حفظك!");
         };
-  </body>
+    </script>
+</body>
 </html>
